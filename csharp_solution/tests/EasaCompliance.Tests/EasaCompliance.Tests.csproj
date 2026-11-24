@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <Platforms>x64</Platforms>
+    <Configurations>Debug R27;Release R27;Debug;Release</Configurations>
+    <AssetTargetFallback>$(AssetTargetFallback);net10.0-windows7.0;net10.0-windows;net10.0;net9.0-windows7.0;net9.0-windows;net9.0;net8.0-windows7.0;net8.0-windows;net8.0</AssetTargetFallback>
+    <NoWarn>$(NoWarn);NU1202;NU1603;NU1701;CS1705</NoWarn>
+    <WarningsNotAsErrors>CS1705</WarningsNotAsErrors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EasaCompliance.Core\EasaCompliance.Core.csproj" />
+    <ProjectReference Include="..\..\src\EasaCompliance.Regulations\EasaCompliance.Regulations.csproj" />
+    <ProjectReference Include="..\..\src\EasaCompliance.Rules\EasaCompliance.Rules.csproj" />
+    <ProjectReference Include="..\..\src\EasaCompliance.Bim\EasaCompliance.Bim.csproj" />
+    <ProjectReference Include="..\..\src\EasaCompliance.Evidence\EasaCompliance.Evidence.csproj" />
+    <ProjectReference Include="..\..\src\EasaCompliance.Persistence\EasaCompliance.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="6.12.1" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Platforms>x64</Platforms>
+    <Configurations>Debug R27;Release R27;Debug;Release</Configurations>
+    <AssetTargetFallback>$(AssetTargetFallback);net10.0-windows7.0;net10.0-windows;net10.0;net9.0-windows7.0;net9.0-windows;net9.0;net8.0-windows7.0;net8.0-windows;net8.0</AssetTargetFallback>
+    <NoWarn>$(NoWarn);NU1202;NU1603;NU1701;CS1705</NoWarn>
+    <WarningsNotAsErrors>CS1705</WarningsNotAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EasaCompliance.Core\EasaCompliance.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows' or '$(Configuration)' == 'Debug R27' or '$(Configuration)' == 'Release R27'">
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2027.0.0-preview.1.20260110" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' != 'net10.0-windows' and '$(Configuration)' != 'Debug R27' and '$(Configuration)' != 'Release R27'">
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2025.0.0" PrivateAssets="all" />
+  </ItemGroup>
+</Project>

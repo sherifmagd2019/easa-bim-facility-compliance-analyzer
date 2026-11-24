@@ -1,0 +1,66 @@
+{
+  "libraryVersion": "2024.11-REV27",
+  "publishedDate": "2024-11-01",
+  "regulations": [
+    {
+      "requirementId": "REQ-145.A.25-A",
+      "regulationName": "Commission Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sectionReference": "145.A.25(a)",
+      "hierarchy": "HardLaw_ImplementingRule",
+      "sourceDocumentTitle": "EASA Easy Access Rules for Continuing Airworthiness (Part-145)",
+      "officialSourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "summary": "Facilities are suited to all planned work, ensuring in particular protection from weather elements. Specialized workshops are segregated to prevent contamination.",
+      "originalTextExtract": "Facilities are suited to all planned work, ensuring in particular, protection from the weather elements. Specialized workshops and bays are segregated as appropriate, to ensure that environmental and work area contamination is unlikely to occur.",
+      "applicabilityConditions": "Universal Part-145 requirement for all maintenance scopes.",
+      "assessmentMethod": "HybridBimAndDocumentary",
+      "requiredEvidence": "Bim model showing structural enclosure and partition walls; MOE Chapter 1.8; Site environmental logs.",
+      "relatedBimCategories": ["Rooms", "Walls", "Roofs", "Doors"],
+      "requiresHumanReview": true
+    },
+    {
+      "requirementId": "REQ-145.A.25-D",
+      "regulationName": "Commission Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sectionReference": "145.A.25(d)",
+      "hierarchy": "HardLaw_ImplementingRule",
+      "sourceDocumentTitle": "EASA Easy Access Rules for Continuing Airworthiness (Part-145)",
+      "officialSourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "summary": "Secure storage facilities ensuring segregation of serviceable from unserviceable components and materials.",
+      "originalTextExtract": "Storage facilities for components, equipment, tools and material. Storage conditions ensure segregation of serviceable from unserviceable components and material, in accordance with the manufacturer's instructions. Storage conditions are in accordance with the manufacturer's instructions to prevent deterioration and damage of stored items. Access to storage facilities is restricted to authorized personnel.",
+      "applicabilityConditions": "Mandatory for component rating C20 (ULDs).",
+      "assessmentMethod": "BimAutomated",
+      "requiredEvidence": "BIM floor plan with Quarantine and Bonded store boundaries; Door locking hardware parameters; MOE 2.2.",
+      "relatedBimCategories": ["Rooms", "Doors", "Walls"],
+      "requiresHumanReview": true
+    },
+    {
+      "requirementId": "REQ-145.A.40-A",
+      "regulationName": "Commission Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sectionReference": "145.A.40(a)",
+      "hierarchy": "HardLaw_ImplementingRule",
+      "sourceDocumentTitle": "EASA Easy Access Rules for Continuing Airworthiness (Part-145)",
+      "officialSourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "summary": "Availability and calibration control of equipment, tools and materials specified by maintenance data.",
+      "originalTextExtract": "The organization shall have available and use the necessary equipment, tools and material to perform the approved scope of work. Where necessary, tools and equipment shall be controlled and calibrated to an officially recognized standard at a frequency to ensure serviceability and accuracy.",
+      "applicabilityConditions": "Applies to torque tools, rivet squeezers, tensile testers, scale benches.",
+      "assessmentMethod": "HybridBimAndDocumentary",
+      "requiredEvidence": "BIM equipment instances with AssetID; Calibration register and ISO 17025 certificates.",
+      "relatedBimCategories": ["MechanicalEquipment", "ElectricalEquipment", "SpecialityEquipment"],
+      "requiresHumanReview": true
+    },
+    {
+      "requirementId": "REQ-IS.I.OR.200",
+      "regulationName": "Commission Implementing Regulation (EU) 2023/203 (Part-IS)",
+      "sectionReference": "IS.I.OR.200",
+      "hierarchy": "HardLaw_ImplementingRule",
+      "sourceDocumentTitle": "Information Security Management Systems in Civil Aviation",
+      "officialSourceUrl": "https://www.easa.europa.eu/en/document-library/regulations/commission-implementing-regulation-eu-2023203",
+      "summary": "Management system for information security risks. Physical access security to information systems and records.",
+      "originalTextExtract": "The organization shall implement and maintain an information security management system (ISMS) to identify, assess and manage information security risks which may impact aviation safety, including physical protection of server infrastructure and airworthiness record archives.",
+      "applicabilityConditions": "Conditional for organizations operating digital CRS or maintenance record repositories.",
+      "assessmentMethod": "HybridBimAndDocumentary",
+      "requiredEvidence": "Access-controlled server room in BIM; Cyber risk assessment policy; Access badge audit logs.",
+      "relatedBimCategories": ["Doors", "SecurityDevices"],
+      "requiresHumanReview": true
+    }
+  ]
+}

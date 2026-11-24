@@ -1,0 +1,6 @@
+{
+  "name": "EASA BIM Facility Compliance Analyzer",
+  "description": "Production-oriented Revit 2027 add-in and verification workbench for EASA Part-145 and Part-IS ULD facility compliance assessment.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

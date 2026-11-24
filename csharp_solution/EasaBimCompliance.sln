@@ -1,0 +1,124 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35013.160
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Launcher", "src\EasaCompliance.Launcher\EasaCompliance.Launcher.csproj", "{00000000-0000-0000-0000-000000000000}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Core", "src\EasaCompliance.Core\EasaCompliance.Core.csproj", "{11111111-1111-1111-1111-111111111111}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Regulations", "src\EasaCompliance.Regulations\EasaCompliance.Regulations.csproj", "{22222222-2222-2222-2222-222222222222}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Rules", "src\EasaCompliance.Rules\EasaCompliance.Rules.csproj", "{33333333-3333-3333-3333-333333333333}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Bim", "src\EasaCompliance.Bim\EasaCompliance.Bim.csproj", "{44444444-4444-4444-4444-444444444444}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Evidence", "src\EasaCompliance.Evidence\EasaCompliance.Evidence.csproj", "{55555555-5555-5555-5555-555555555555}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Reporting", "src\EasaCompliance.Reporting\EasaCompliance.Reporting.csproj", "{66666666-6666-6666-6666-666666666666}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Persistence", "src\EasaCompliance.Persistence\EasaCompliance.Persistence.csproj", "{77777777-7777-7777-7777-777777777777}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.UI", "src\EasaCompliance.UI\EasaCompliance.UI.csproj", "{88888888-8888-8888-8888-888888888888}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Revit", "src\EasaCompliance.Revit\EasaCompliance.Revit.csproj", "{99999999-9999-9999-9999-999999999999}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasaCompliance.Tests", "tests\EasaCompliance.Tests\EasaCompliance.Tests.csproj", "{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+		Debug R27|x64 = Debug R27|x64
+		Release R27|x64 = Release R27|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00000000-0000-0000-0000-000000000000}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{00000000-0000-0000-0000-000000000000}.Debug R27|x64.Build.0 = Debug R27|x64
+		{00000000-0000-0000-0000-000000000000}.Release R27|x64.ActiveCfg = Release R27|x64
+		{00000000-0000-0000-0000-000000000000}.Release R27|x64.Build.0 = Release R27|x64
+		{00000000-0000-0000-0000-000000000000}.Debug|x64.ActiveCfg = Debug|x64
+		{00000000-0000-0000-0000-000000000000}.Debug|x64.Build.0 = Debug|x64
+		{00000000-0000-0000-0000-000000000000}.Release|x64.ActiveCfg = Release|x64
+		{00000000-0000-0000-0000-000000000000}.Release|x64.Build.0 = Release|x64
+		{11111111-1111-1111-1111-111111111111}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{11111111-1111-1111-1111-111111111111}.Debug R27|x64.Build.0 = Debug R27|x64
+		{11111111-1111-1111-1111-111111111111}.Release R27|x64.ActiveCfg = Release R27|x64
+		{11111111-1111-1111-1111-111111111111}.Release R27|x64.Build.0 = Release R27|x64
+		{11111111-1111-1111-1111-111111111111}.Debug|x64.ActiveCfg = Debug|x64
+		{11111111-1111-1111-1111-111111111111}.Debug|x64.Build.0 = Debug|x64
+		{11111111-1111-1111-1111-111111111111}.Release|x64.ActiveCfg = Release|x64
+		{11111111-1111-1111-1111-111111111111}.Release|x64.Build.0 = Release|x64
+		{22222222-2222-2222-2222-222222222222}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{22222222-2222-2222-2222-222222222222}.Debug R27|x64.Build.0 = Debug R27|x64
+		{22222222-2222-2222-2222-222222222222}.Release R27|x64.ActiveCfg = Release R27|x64
+		{22222222-2222-2222-2222-222222222222}.Release R27|x64.Build.0 = Release R27|x64
+		{22222222-2222-2222-2222-222222222222}.Debug|x64.ActiveCfg = Debug|x64
+		{22222222-2222-2222-2222-222222222222}.Debug|x64.Build.0 = Debug|x64
+		{22222222-2222-2222-2222-222222222222}.Release|x64.ActiveCfg = Release|x64
+		{22222222-2222-2222-2222-222222222222}.Release|x64.Build.0 = Release|x64
+		{33333333-3333-3333-3333-333333333333}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{33333333-3333-3333-3333-333333333333}.Debug R27|x64.Build.0 = Debug R27|x64
+		{33333333-3333-3333-3333-333333333333}.Release R27|x64.ActiveCfg = Release R27|x64
+		{33333333-3333-3333-3333-333333333333}.Release R27|x64.Build.0 = Release R27|x64
+		{33333333-3333-3333-3333-333333333333}.Debug|x64.ActiveCfg = Debug|x64
+		{33333333-3333-3333-3333-333333333333}.Debug|x64.Build.0 = Debug|x64
+		{33333333-3333-3333-3333-333333333333}.Release|x64.ActiveCfg = Release|x64
+		{33333333-3333-3333-3333-333333333333}.Release|x64.Build.0 = Release|x64
+		{44444444-4444-4444-4444-444444444444}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{44444444-4444-4444-4444-444444444444}.Debug R27|x64.Build.0 = Debug R27|x64
+		{44444444-4444-4444-4444-444444444444}.Release R27|x64.ActiveCfg = Release R27|x64
+		{44444444-4444-4444-4444-444444444444}.Release R27|x64.Build.0 = Release R27|x64
+		{44444444-4444-4444-4444-444444444444}.Debug|x64.ActiveCfg = Debug|x64
+		{44444444-4444-4444-4444-444444444444}.Debug|x64.Build.0 = Debug|x64
+		{44444444-4444-4444-4444-444444444444}.Release|x64.ActiveCfg = Release|x64
+		{44444444-4444-4444-4444-444444444444}.Release|x64.Build.0 = Release|x64
+		{55555555-5555-5555-5555-555555555555}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{55555555-5555-5555-5555-555555555555}.Debug R27|x64.Build.0 = Debug R27|x64
+		{55555555-5555-5555-5555-555555555555}.Release R27|x64.ActiveCfg = Release R27|x64
+		{55555555-5555-5555-5555-555555555555}.Release R27|x64.Build.0 = Release R27|x64
+		{55555555-5555-5555-5555-555555555555}.Debug|x64.ActiveCfg = Debug|x64
+		{55555555-5555-5555-5555-555555555555}.Debug|x64.Build.0 = Debug|x64
+		{55555555-5555-5555-5555-555555555555}.Release|x64.ActiveCfg = Release|x64
+		{55555555-5555-5555-5555-555555555555}.Release|x64.Build.0 = Release|x64
+		{66666666-6666-6666-6666-666666666666}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{66666666-6666-6666-6666-666666666666}.Debug R27|x64.Build.0 = Debug R27|x64
+		{66666666-6666-6666-6666-666666666666}.Release R27|x64.ActiveCfg = Release R27|x64
+		{66666666-6666-6666-6666-666666666666}.Release R27|x64.Build.0 = Release R27|x64
+		{66666666-6666-6666-6666-666666666666}.Debug|x64.ActiveCfg = Debug|x64
+		{66666666-6666-6666-6666-666666666666}.Debug|x64.Build.0 = Debug|x64
+		{66666666-6666-6666-6666-666666666666}.Release|x64.ActiveCfg = Release|x64
+		{66666666-6666-6666-6666-666666666666}.Release|x64.Build.0 = Release|x64
+		{77777777-7777-7777-7777-777777777777}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{77777777-7777-7777-7777-777777777777}.Debug R27|x64.Build.0 = Debug R27|x64
+		{77777777-7777-7777-7777-777777777777}.Release R27|x64.ActiveCfg = Release R27|x64
+		{77777777-7777-7777-7777-777777777777}.Release R27|x64.Build.0 = Release R27|x64
+		{77777777-7777-7777-7777-777777777777}.Debug|x64.ActiveCfg = Debug|x64
+		{77777777-7777-7777-7777-777777777777}.Debug|x64.Build.0 = Debug|x64
+		{77777777-7777-7777-7777-777777777777}.Release|x64.ActiveCfg = Release|x64
+		{77777777-7777-7777-7777-777777777777}.Release|x64.Build.0 = Release|x64
+		{88888888-8888-8888-8888-888888888888}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{88888888-8888-8888-8888-888888888888}.Debug R27|x64.Build.0 = Debug R27|x64
+		{88888888-8888-8888-8888-888888888888}.Release R27|x64.ActiveCfg = Release R27|x64
+		{88888888-8888-8888-8888-888888888888}.Release R27|x64.Build.0 = Release R27|x64
+		{88888888-8888-8888-8888-888888888888}.Debug|x64.ActiveCfg = Debug|x64
+		{88888888-8888-8888-8888-888888888888}.Debug|x64.Build.0 = Debug|x64
+		{88888888-8888-8888-8888-888888888888}.Release|x64.ActiveCfg = Release|x64
+		{88888888-8888-8888-8888-888888888888}.Release|x64.Build.0 = Release|x64
+		{99999999-9999-9999-9999-999999999999}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{99999999-9999-9999-9999-999999999999}.Debug R27|x64.Build.0 = Debug R27|x64
+		{99999999-9999-9999-9999-999999999999}.Release R27|x64.ActiveCfg = Release R27|x64
+		{99999999-9999-9999-9999-999999999999}.Release R27|x64.Build.0 = Release R27|x64
+		{99999999-9999-9999-9999-999999999999}.Debug|x64.ActiveCfg = Debug|x64
+		{99999999-9999-9999-9999-999999999999}.Debug|x64.Build.0 = Debug|x64
+		{99999999-9999-9999-9999-999999999999}.Release|x64.ActiveCfg = Release|x64
+		{99999999-9999-9999-9999-999999999999}.Release|x64.Build.0 = Release|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Debug R27|x64.ActiveCfg = Debug R27|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Debug R27|x64.Build.0 = Debug R27|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Release R27|x64.ActiveCfg = Release R27|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Release R27|x64.Build.0 = Release R27|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Debug|x64.ActiveCfg = Debug|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Debug|x64.Build.0 = Debug|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Release|x64.ActiveCfg = Release|x64
+		{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+EndGlobal

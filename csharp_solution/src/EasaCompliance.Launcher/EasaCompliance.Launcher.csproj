@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Platforms>x64</Platforms>
+    <Configurations>Debug R27;Release R27;Debug;Release</Configurations>
+    <NoWarn>$(NoWarn);CS1705</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasaCompliance.Core\EasaCompliance.Core.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Regulations\EasaCompliance.Regulations.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Rules\EasaCompliance.Rules.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Bim\EasaCompliance.Bim.csproj" />
+    <ProjectReference Include="..\EasaCompliance.UI\EasaCompliance.UI.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Evidence\EasaCompliance.Evidence.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Reporting\EasaCompliance.Reporting.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Persistence\EasaCompliance.Persistence.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,19 @@
+{
+  "roomMappings": {
+    "nameParameters": ["Name", "Room Name", "Function"],
+    "numberParameters": ["Number", "Room Number"],
+    "areaParameters": ["Area"],
+    "departmentParameters": ["Department", "Occupancy"]
+  },
+  "doorMappings": {
+    "clearWidthParameters": ["Clear Width", "Frame Opening Width", "Rough Width", "Width"],
+    "clearHeightParameters": ["Clear Height", "Height"],
+    "accessControlParameters": ["Access Control", "Security Level", "Keycard", "Hardware Set"]
+  },
+  "equipmentMappings": {
+    "assetIdParameters": ["AssetID", "Asset Tag", "Mark", "Tag"],
+    "serialNumberParameters": ["Serial Number", "Serial", "SerialNumber"],
+    "calibrationDateParameters": ["Calibration Due", "Calibration Expiry", "Next Calibration"],
+    "workstationParameters": ["Workstation", "Room", "Location"]
+  }
+}

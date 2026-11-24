@@ -1,0 +1,259 @@
+<Window x:Class="EasaCompliance.UI.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:EasaCompliance.UI.ViewModels"
+        mc:Ignorable="d"
+        Title="EASA BIM Facility Compliance Analyzer — Revit 2027" 
+        Height="780" Width="1200" MinWidth="1000" MinHeight="650"
+        WindowStartupLocation="CenterScreen"
+        Background="#F8FAFC">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#0F172A">
+            <StackPanel Orientation="Vertical">
+                <!-- Developer Top Ribbon -->
+                <Border Background="#020617" Padding="20,6" BorderBrush="#1E293B" BorderThickness="0,0,0,1">
+                    <DockPanel LastChildFill="False">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                            <TextBlock Text="Developer: " Foreground="#94A3B8" FontSize="11" FontWeight="Medium"/>
+                            <TextBlock Text="Developer Eng. Sherif Ahmad Magaldin" Foreground="#93C5FD" FontSize="11" FontWeight="Bold"/>
+                        </StackPanel>
+                        <TextBlock Text="Autodesk Revit 2027 (.NET 10 / .NET 8) — Nice3point Toolkit" DockPanel.Dock="Right" Foreground="#64748B" FontSize="11" FontFamily="Consolas"/>
+                    </DockPanel>
+                </Border>
+
+                <Border Padding="20,14">
+                    <DockPanel LastChildFill="False">
+                        <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                            <TextBlock Text="EASA BIM FACILITY COMPLIANCE ANALYZER" 
+                                       Foreground="#FFFFFF" FontSize="18" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding ModelStatusBadge}" 
+                                       Foreground="#4ADE80" FontSize="12" FontWeight="SemiBold" Margin="0,4,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                            <Button Content="Run Assessment" Command="{Binding RunFullAssessmentCommand}"
+                                    Background="#2563EB" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                    Padding="14,8" BorderThickness="0" Margin="0,0,8,0" Cursor="Hand"/>
+                            <Button Content="Regulations Matrix" Command="{Binding OpenRegulationsCommand}"
+                                    Background="#0D9488" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                    Padding="14,8" BorderThickness="0" Margin="0,0,8,0" Cursor="Hand"
+                                    ToolTip="View all EASA Part-145 regulations with compliant / non-compliant status"/>
+                            <Button Content="Rule Library Editor" Command="{Binding OpenRuleEditorCommand}"
+                                    Background="#4F46E5" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                    Padding="14,8" BorderThickness="0" Margin="0,0,8,0" Cursor="Hand"
+                                    ToolTip="Edit compliance rules and add new facility checks"/>
+                            <Button Content="Generate Report" Command="{Binding ExportReportCommand}"
+                                    Background="#0284C7" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                    Padding="14,8" BorderThickness="0" Cursor="Hand"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <!-- Main Tabs -->
+        <TabControl Grid.Row="1" Background="#FFFFFF" Margin="16" BorderBrush="#E2E8F0" BorderThickness="1">
+            <!-- Tab 1: Findings Explorer -->
+            <TabItem Header="Findings Explorer" Padding="14,8" FontWeight="SemiBold">
+                <Grid Margin="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="380"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Findings Table & Filters -->
+                    <DockPanel Grid.Column="0" Margin="0,0,16,0">
+                        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Margin="0,0,0,12">
+                            <TextBlock Text="Filter:" VerticalAlignment="Center" FontWeight="Medium" Margin="0,0,8,0"/>
+                            <TextBox Width="200" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" 
+                                     Padding="6,4" Margin="0,0,12,0" VerticalAlignment="Center"/>
+                            <TextBlock Text="Status:" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <ComboBox SelectedValue="{Binding StatusFilter, Mode=TwoWay}" SelectedValuePath="Content" Width="145" Margin="0,0,12,0">
+                                <ComboBoxItem Content="ALL" IsSelected="True"/>
+                                <ComboBoxItem Content="GapFound"/>
+                                <ComboBoxItem Content="NeedsHumanReview"/>
+                                <ComboBoxItem Content="MeetsModeledCheck"/>
+                                <ComboBoxItem Content="NotAssessed"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <DataGrid ItemsSource="{Binding FilteredFindings}" SelectedItem="{Binding SelectedFinding}" 
+                                  AutoGenerateColumns="False" IsReadOnly="True" GridLinesVisibility="Horizontal"
+                                  HeadersVisibility="Column" RowHeight="32" SelectionMode="Single"
+                                  BorderThickness="1" BorderBrush="#E2E8F0" Background="#FFFFFF">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding FindingId}" Width="105"/>
+                                <DataGridTextColumn Header="Clause" Binding="{Binding RegulatoryReference}" Width="90"/>
+                                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="110"/>
+                                <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="85"/>
+                                <DataGridTextColumn Header="Zone / Room" Binding="{Binding AffectedRoomOrZone}" Width="135"/>
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+
+                    <!-- Finding Details Panel -->
+                    <Border Grid.Column="1" Background="#F8FAFC" BorderBrush="#E2E8F0" BorderThickness="1" Padding="16">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="Finding Detail &amp; Revit Link" FontSize="15" FontWeight="Bold" Margin="0,0,0,12"/>
+                                
+                                <TextBlock Text="Regulatory Reference &amp; Classification" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,2,0,10">
+                                    <TextBlock Text="{Binding SelectedFinding.RegulatoryReference}" FontWeight="Bold" Margin="0,0,8,0"/>
+                                    <TextBlock Text="{Binding SelectedFinding.Classification}" Foreground="#475569" FontSize="11" VerticalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <Border Background="#E2E8F0" Padding="8,3" CornerRadius="4" Margin="0,0,6,0">
+                                        <TextBlock Text="{Binding SelectedFinding.Status}" FontWeight="SemiBold" FontSize="11"/>
+                                    </Border>
+                                    <Border Background="#FEE2E2" Padding="8,3" CornerRadius="4">
+                                        <TextBlock Text="{Binding SelectedFinding.Severity}" Foreground="#991B1B" FontWeight="Bold" FontSize="11"/>
+                                    </Border>
+                                </StackPanel>
+
+                                <TextBlock Text="Measured vs. Required Value" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <Border Background="#FFFFFF" BorderBrush="#E2E8F0" BorderThickness="1" Padding="8" Margin="0,2,0,10" CornerRadius="4">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding SelectedFinding.MeasuredValue}" FontSize="12" Margin="0,0,0,3"/>
+                                        <TextBlock Text="{Binding SelectedFinding.RequiredValue}" FontSize="12" FontWeight="SemiBold" Foreground="#1E293B"/>
+                                    </StackPanel>
+                                </Border>
+
+                                <TextBlock Text="Engineering Assumptions Applied" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <TextBlock Text="{Binding SelectedFinding.AssumptionsApplied}" TextWrapping="Wrap" FontStyle="Italic" Foreground="#334155" FontSize="11" Margin="0,2,0,10"/>
+
+                                <TextBlock Text="Explanation" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <TextBlock Text="{Binding SelectedFinding.Explanation}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+                                <TextBlock Text="Recommended Corrective Action" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <TextBlock Text="{Binding SelectedFinding.RecommendedCorrectiveAction}" TextWrapping="Wrap" Margin="0,2,0,10"/>
+
+                                <TextBlock Text="Reviewer Decision State" FontWeight="SemiBold" Foreground="#64748B" FontSize="11"/>
+                                <TextBlock Text="{Binding SelectedFinding.ReviewerDecision}" FontWeight="SemiBold" Foreground="#0284C7" Margin="0,2,0,14"/>
+
+                                <Border Background="#E2E8F0" Height="1" Margin="0,0,0,14"/>
+
+                                <TextBlock Text="Revit Element Integration" FontSize="13" FontWeight="Bold" Margin="0,0,0,8"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                    <TextBlock Text="Element ID: " Foreground="#64748B"/>
+                                    <TextBlock Text="{Binding SelectedFinding.RevitElementId}" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,14">
+                                    <TextBlock Text="UniqueId: " Foreground="#64748B"/>
+                                    <TextBlock Text="{Binding SelectedFinding.RevitUniqueId}" FontFamily="Consolas" FontSize="10"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Zoom to Element in Revit" Command="{Binding ZoomToElementCommand}"
+                                            Background="#1E293B" Foreground="#FFFFFF" Padding="12,6" Margin="0,0,8,0" Cursor="Hand"/>
+                                    <Button Content="Isolate" Command="{Binding IsolateElementCommand}"
+                                            Background="#475569" Foreground="#FFFFFF" Padding="12,6" Cursor="Hand"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab 2: Project & Scope -->
+            <TabItem Header="Project &amp; Regulatory Scope" Padding="14,8" FontWeight="SemiBold">
+                <ScrollViewer Margin="16" VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,20,0">
+                            <TextBlock Text="Facility Metadata" FontSize="15" FontWeight="Bold" Margin="0,0,0,12"/>
+                            <TextBlock Text="Facility Name:"/>
+                            <TextBox Text="{Binding Project.FacilityName}" Padding="6,4" Margin="0,4,0,10"/>
+                            <TextBlock Text="Address:"/>
+                            <TextBox Text="{Binding Project.FacilityAddress}" Padding="6,4" Margin="0,4,0,10"/>
+                            <TextBlock Text="Country of Operation:"/>
+                            <TextBox Text="{Binding Project.CountryOfOperation}" Padding="6,4" Margin="0,4,0,10"/>
+                            <TextBlock Text="Intended Approval Scope:"/>
+                            <TextBox Text="{Binding Project.IntendedApprovalScope}" Padding="6,4" Margin="0,4,0,10"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Text="Regulatory Route Determination" FontSize="15" FontWeight="Bold" Margin="0,0,0,12"/>
+                            <TextBlock Text="Intended Authority Route:"/>
+                            <TextBox Text="{Binding Project.IntendedAuthorityRoute}" Padding="6,4" Margin="0,4,0,10"/>
+                            <TextBlock Text="Assessment Limitations:"/>
+                            <TextBox Text="{Binding Project.AssessmentLimitations}" TextWrapping="Wrap" AcceptsReturn="True" Height="80" Padding="6,4" Margin="0,4,0,10"/>
+                            <TextBlock Text="Assumptions:"/>
+                            <TextBox Text="{Binding Project.Assumptions}" TextWrapping="Wrap" AcceptsReturn="True" Height="80" Padding="6,4" Margin="0,4,0,10"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <!-- Tab 3: Model Completeness -->
+            <TabItem Header="Model Completeness" Padding="14,8" FontWeight="SemiBold">
+                <StackPanel Margin="16">
+                    <TextBlock Text="BIM Model Extraction Dashboard" FontSize="16" FontWeight="Bold" Margin="0,0,0,12"/>
+                    <TextBlock Text="Active Document: FRA-ULD-MNT-2027-R03.rvt" Margin="0,0,0,6"/>
+                    <TextBlock Text="Elements Audited: 48 | Rooms: 6 | Doors: 3 | Equipment Assets: 2" Margin="0,0,0,12"/>
+                    <ProgressBar Value="{Binding CompletenessReport.OverallCompletenessScore}" Maximum="100" Height="20" Margin="0,0,0,6"/>
+                    <TextBlock Text="Completeness Score: 91.5% (LOD 350)" FontWeight="Bold" Margin="0,0,0,16"/>
+                    <TextBlock Text="Limitations: Door clearances are derived from parametric opening widths; physical punch-list audit required before final EASA Form 2 sign-off." Foreground="#64748B"/>
+                </StackPanel>
+            </TabItem>
+
+            <!-- Tab 4: EASA Regulations Checklist -->
+            <TabItem Header="EASA Regulations Checklist" Padding="14,8" FontWeight="SemiBold">
+                <Grid Margin="16">
+                    <DockPanel LastChildFill="True">
+                        <Border DockPanel.Dock="Top" Background="#F1F5F9" Padding="12,8" Margin="0,0,0,12" CornerRadius="4">
+                            <DockPanel LastChildFill="False">
+                                <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                                    <TextBlock Text="EASA Part-145 Facility Regulations Evaluation Status" FontWeight="Bold" FontSize="14"/>
+                                    <TextBlock Text="Live compliance evaluation cross-referencing all modeled checks and documentary provisions." Foreground="#64748B" FontSize="11"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Center">
+                                    <Button Content="Open Interactive Matrix Form" Command="{Binding OpenRegulationsCommand}"
+                                            Background="#0D9488" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                            Padding="12,6" BorderThickness="0" Margin="0,0,8,0" Cursor="Hand"/>
+                                    <Button Content="Open Rule Library Editor" Command="{Binding OpenRuleEditorCommand}"
+                                            Background="#4F46E5" Foreground="#FFFFFF" FontWeight="SemiBold"
+                                            Padding="12,6" BorderThickness="0" Cursor="Hand"/>
+                                </StackPanel>
+                            </DockPanel>
+                        </Border>
+
+                        <DataGrid ItemsSource="{Binding Requirements}" AutoGenerateColumns="False" IsReadOnly="True"
+                                  GridLinesVisibility="Horizontal" HeadersVisibility="Column" RowHeight="32" SelectionMode="Single"
+                                  BorderThickness="1" BorderBrush="#E2E8F0" Background="#FFFFFF">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Clause" Binding="{Binding SectionReference}" Width="130"/>
+                                <DataGridTextColumn Header="Compliance Status" Binding="{Binding EvaluatedComplianceStatus}" Width="160"/>
+                                <DataGridTextColumn Header="Hierarchy" Binding="{Binding Hierarchy}" Width="140"/>
+                                <DataGridTextColumn Header="Method" Binding="{Binding AssessmentMethod}" Width="130"/>
+                                <DataGridTextColumn Header="Summary" Binding="{Binding Summary}" Width="*"/>
+                                <DataGridTextColumn Header="Compliance Notes" Binding="{Binding ComplianceNotes}" Width="250"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </DockPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <!-- Status Bar -->
+        <Border Grid.Row="2" Background="#F1F5F9" Padding="16,8" BorderBrush="#CBD5E1" BorderThickness="0,1,0,0">
+            <TextBlock Text="Notice: EASA BIM Facility Compliance Analyzer is a gap assessment tool and does not constitute official certification or authority endorsement." 
+                       FontSize="11" Foreground="#64748B" HorizontalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>

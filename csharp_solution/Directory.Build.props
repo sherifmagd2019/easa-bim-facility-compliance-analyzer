@@ -1,0 +1,20 @@
+<Project>
+  <PropertyGroup>
+    <!-- 
+      Autodesk Revit 2025/2026 runs on .NET 8 (net8.0-windows), which is standard LTS and pre-installed in Visual Studio 2022.
+      Autodesk Revit 2027 runs on .NET 10 (net10.0-windows).
+      Defaulting to net8.0-windows ensures immediate 0-configuration building without requiring .NET 10 preview SDK installation.
+    -->
+    <TargetFramework Condition="'$(Configuration)' == 'Debug R27' or '$(Configuration)' == 'Release R27'">net10.0-windows</TargetFramework>
+    <TargetFramework Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release' or '$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <Platforms>x64;AnyCPU</Platforms>
+    <Configurations>Debug;Release;Debug R27;Release R27</Configurations>
+    <!-- Suppresses package type mismatches, transitive references, version fallbacks, and version mismatch warnings -->
+    <NoWarn>$(NoWarn);NU1202;NU1603;NU1701;CS8601;CS1705</NoWarn>
+    <WarningsNotAsErrors>CS1705</WarningsNotAsErrors>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+  </PropertyGroup>
+</Project>

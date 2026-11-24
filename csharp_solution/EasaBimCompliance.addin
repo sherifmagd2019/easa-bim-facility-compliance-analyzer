@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>EASA BIM Facility Compliance Analyzer</Name>
+    <Assembly>EasaCompliance.Revit.dll</Assembly>
+    <AddInId>75A4E8D2-4C1B-4E61-A79B-69BF27C9F201</AddInId>
+    <FullClassName>EasaCompliance.Revit.App</FullClassName>
+    <VendorId>EASA-COMPLIANCE</VendorId>
+    <VendorDescription>Developer Eng. Sherif Ahmad Magaldin — EASA Part-145 and Part-IS BIM Compliance Gap Assessment Tool</VendorDescription>
+  </AddIn>
+</RevitAddIns>

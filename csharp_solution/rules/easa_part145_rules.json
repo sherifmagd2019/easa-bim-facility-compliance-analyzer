@@ -1,0 +1,114 @@
+{
+  "catalogVersion": "v2026.10-EASA-145-R3",
+  "regulatorySource": "Regulation (EU) No 1321/2014 Annex II (Part-145) consolidated up to ED Decision 2024/008/R & Regulation (EU) 2023/203 (Part-IS)",
+  "rules": [
+    {
+      "ruleId": "RULE-145-FAC-01",
+      "name": "Physical Segregation of Quarantine / Unserviceable Components",
+      "applicableClause": "145.A.25(d)",
+      "regulatoryReference": "145.A.25(d)",
+      "classification": "Regulatory",
+      "sourceDocument": "Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "evaluationType": "RoomExistenceCheck",
+      "defaultSeverity": "Critical",
+      "isEnabled": true,
+      "requiresHumanReview": true,
+      "parameters": {
+        "roomKeyword": "Quarantine"
+      },
+      "expectedOutcome": "Dedicated quarantine holding room modeled with physical partition boundaries.",
+      "limitations": "Physical security lock status must be confirmed via MOE Chapter 2.2 procedures."
+    },
+    {
+      "ruleId": "RULE-145-FAC-02",
+      "name": "Secure Bonded Parts Store Presence & Access Control",
+      "applicableClause": "145.A.25(d) & 145.A.42(a)",
+      "regulatoryReference": "145.A.42(a)",
+      "classification": "Regulatory",
+      "sourceDocument": "Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "evaluationType": "RoomExistenceCheck",
+      "defaultSeverity": "High",
+      "isEnabled": true,
+      "requiresHumanReview": true,
+      "parameters": {
+        "roomKeyword": "Bonded"
+      },
+      "expectedOutcome": "Dedicated secure bonded store modeled for serviceable aeronautical parts.",
+      "limitations": "Inventory segregation controls require WMS / ERP documentary verification."
+    },
+    {
+      "ruleId": "RULE-145-FAC-03",
+      "name": "Workshop Door Clear Opening Width for ULD Pallet Handling",
+      "applicableClause": "AMC 145.A.25(a)",
+      "regulatoryReference": "AMC 145.A.25(a)",
+      "classification": "AMC_GM",
+      "sourceDocument": "EASA AMC & GM to Part-145 (ED Decision 2015/029/R)",
+      "sourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "evaluationType": "DoorClearanceCheck",
+      "defaultSeverity": "Critical",
+      "isEnabled": true,
+      "requiresHumanReview": false,
+      "parameters": {
+        "uldBaseWidthMm": 2438.0,
+        "transporterEnvelopeMm": 2650.0,
+        "lateralMarginMm": 300.0
+      },
+      "expectedOutcome": "Bay cargo doors have clear opening width >= 2,950 mm for PMC 96-in pallets.",
+      "limitations": "Evaluates parametric Clear Opening Width. Physical threshold and frame clearances require site punch-list."
+    },
+    {
+      "ruleId": "RULE-145-FAC-04",
+      "name": "Emergency Eyewash Proximity to Chemical / Battery Station",
+      "applicableClause": "ANSI/ISEA Z358.1-2014 / EN 15154",
+      "regulatoryReference": "ANSI Z358.1 / 145.A.25(c)",
+      "classification": "ProjectAssumption",
+      "sourceDocument": "ANSI/ISEA Z358.1-2014 & EN 15154-1 (Project Safety Assumption)",
+      "sourceUrl": "https://webstore.ansi.org/standards/isea/ansiiseaz3582014",
+      "evaluationType": "SpatialDistanceCheck",
+      "defaultSeverity": "High",
+      "isEnabled": true,
+      "requiresHumanReview": true,
+      "parameters": {
+        "maxDistanceM": 15.0
+      },
+      "expectedOutcome": "Emergency eyewash station located within 15 meters travel distance.",
+      "limitations": "EASA Part-145 does not prescribe 15m; this is an industrial hygiene assumption citing ANSI Z358.1."
+    },
+    {
+      "ruleId": "RULE-145-FAC-05",
+      "name": "Maintenance Tooling Asset Identification Parameters",
+      "applicableClause": "145.A.40(a)",
+      "regulatoryReference": "145.A.40(a)",
+      "classification": "Regulatory",
+      "sourceDocument": "Regulation (EU) No 1321/2014 Annex II (Part-145)",
+      "sourceUrl": "https://www.easa.europa.eu/en/document-library/easy-access-rules/easy-access-rules-continuing-airworthiness-regulation-eu-no-13212014",
+      "evaluationType": "EquipmentAssetPresenceCheck",
+      "defaultSeverity": "Medium",
+      "isEnabled": true,
+      "requiresHumanReview": true,
+      "parameters": {
+        "requiredType": "Riveter"
+      },
+      "expectedOutcome": "Structural squeezer and riveter equipment instances populated with AssetID / Mark.",
+      "limitations": "Equipment calibration status verified via ISO 17025 certificates."
+    },
+    {
+      "ruleId": "RULE-IS-SEC-01",
+      "name": "Server & Records Physical Access Security Control",
+      "applicableClause": "IS.I.OR.200 & 145.A.42(a)",
+      "regulatoryReference": "Regulation (EU) 2023/203",
+      "classification": "Regulatory",
+      "sourceDocument": "Commission Implementing Regulation (EU) 2023/203 (Part-IS)",
+      "sourceUrl": "https://www.easa.europa.eu/en/document-library/regulations/commission-implementing-regulation-eu-2023203",
+      "evaluationType": "SecurityAccessControlCheck",
+      "defaultSeverity": "High",
+      "isEnabled": true,
+      "requiresHumanReview": true,
+      "parameters": {},
+      "expectedOutcome": "Access control card reader or biometric locking specified on server/archive doors.",
+      "limitations": "Key custody procedures require organizational audit."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework Condition="'$(TargetFramework)' == ''">net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EasaCompliance.Core\EasaCompliance.Core.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Regulations\EasaCompliance.Regulations.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Rules\EasaCompliance.Rules.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Bim\EasaCompliance.Bim.csproj" />
+    <ProjectReference Include="..\EasaCompliance.UI\EasaCompliance.UI.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Evidence\EasaCompliance.Evidence.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Reporting\EasaCompliance.Reporting.csproj" />
+    <ProjectReference Include="..\EasaCompliance.Persistence\EasaCompliance.Persistence.csproj" />
+  </ItemGroup>
+
+  <!-- Revit 2027 (.NET 10) Configuration -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows' or '$(Configuration)' == 'Debug R27' or '$(Configuration)' == 'Release R27'">
+    <PackageReference Include="Nice3point.Revit.Toolkit" Version="2027.0.0-preview.1.20260122" />
+    <PackageReference Include="Nice3point.Revit.Extensions" Version="2027.0.0-preview.1.20260120" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2027.0.0-preview.1.20260110" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2027.0.0-preview.1.20260110" PrivateAssets="all" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <!-- Revit 2025 / 2026 (.NET 8) Fallback Configuration -->
+  <ItemGroup Condition="'$(TargetFramework)' != 'net10.0-windows' and '$(Configuration)' != 'Debug R27' and '$(Configuration)' != 'Release R27'">
+    <PackageReference Include="Nice3point.Revit.Toolkit" Version="2025.0.0" />
+    <PackageReference Include="Nice3point.Revit.Extensions" Version="2025.0.0" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="2025.0.0" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="2025.0.0" PrivateAssets="all" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <!-- Post-build step to copy files to Autodesk Revit Addins directory -->
+  <Target Name="DeployAddin" AfterTargets="Build" Condition="'$(Configuration)' == 'Debug R27' or '$(Configuration)' == 'Release R27' or '$(Configuration)' == 'Debug'">
+    <PropertyGroup>
+      <RevitYear Condition="'$(TargetFramework)' == 'net10.0-windows' or '$(Configuration)' == 'Debug R27' or '$(Configuration)' == 'Release R27'">2027</RevitYear>
+      <RevitYear Condition="'$(RevitYear)' == ''">2025</RevitYear>
+      <AddinTargetDir>$(AppData)\Autodesk\Revit\Addins\$(RevitYear)\</AddinTargetDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <AddinFile Include="$(ProjectDir)..\..\EasaBimCompliance.addin" />
+      <OutputAssemblies Include="$(TargetDir)**\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(AddinFile)" DestinationFolder="$(AddinTargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(OutputAssemblies)" DestinationFolder="$(AddinTargetDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(OutputAssemblies)" DestinationFolder="$(AddinTargetDir)EasaBimCompliance\" SkipUnchangedFiles="true" />
+  </Target>
+</Project>
